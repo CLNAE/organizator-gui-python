@@ -1,15 +1,15 @@
-#importam toata partea de backend (variablie, clase, functii, instante)
+# importam toata partea de backend (variablie, clase, functii, instante)
 from Backend import *
 
-#setari pentru aspectul general al programului
-sg.set_options(font=('Courier',12))
+# setari pentru aspectul general al programului
+sg.set_options(font=('Courier', 12))
 sg.theme('DarkGrey5')
 
-#delimitarea elementelor layout-ului pe 3 coloane: stanga, centru, dreapta
+# delimitarea elementelor layout-ului pe 3 coloane: stanga, centru, dreapta
 stanga = [
     [sg.Push(), sg.Text('Orar\n\n', font=('Times New Roman', 20), text_color='navajo white'), sg.VPush()],
-    [sg.Push(), sg.Text('Saptamana: ',font=('Courier',16)),sg.Combo(['para','impara'], readonly=True,
-    key='COMBO'),sg.VPush()],
+    [sg.Push(), sg.Text('Saptamana: ', font=('Courier', 16)), sg.Combo(['para', 'impara'], readonly=True,
+                                                                       key='COMBO'), sg.VPush()],
     [sg.Push(), sg.Text(obiectOrar.ore, justification='center', key='textorar'), sg.Push()],
     [sg.VPush(), sg.Push(), sg.Button('Afiseaza'), sg.Push(), sg.VPush()]
 ]
@@ -18,7 +18,7 @@ centru = [
     [sg.Push(), sg.Text('Titlul lectiei:', ), sg.Input(obiectMultiline.titluLectie, size=30, key='numeLectieDeLaUser',
                                                        do_not_clear=False), sg.Push()],
     [sg.Multiline(obiectMultiline.TextLectie, key="txtLectie", size=(80, 30))],
-    [sg.Button('Salveaza Lectia' ), sg.Push(), sg.Button('Goleste')]
+    [sg.Button('Salveaza Lectia'), sg.Push(), sg.Button('Goleste')]
 ]
 
 dreapta = [
@@ -27,9 +27,9 @@ dreapta = [
     [sg.Button('Deschide', size=(10, 1), ), sg.Push(), sg.Button('Sterge', size=(10, 1))]
 ]
 
-#constructia layout-ului
+# constructia layout-ului
 layout = [
-    [sg.Push(), sg.Text('ORGANIZATOR', font=('Times New Roman',20), text_color='navajo white'), sg.Push(),
+    [sg.Push(), sg.Text('ORGANIZATOR', font=('Times New Roman', 20), text_color='navajo white'), sg.Push(),
      sg.Button('Exit')],
     [sg.Column(stanga), sg.Column(centru), sg.Column(dreapta)],
     [sg.Text('© Călin Andrei-Emil', font=('Times New Roman', 10), text_color='navajo white'), sg.Push()]
@@ -53,7 +53,7 @@ while True:
         ore = obiectOrar.afisareOrar_par(window)
 
     if event == 'Afiseaza':
-        window['textorar'].update(ore)
+        window['textorar'].update()
 
     if event == 'Salveaza Lectia':
         obiectMultiline.functieSalvare(values, window)
@@ -67,5 +67,5 @@ while True:
     if event == 'Sterge':
         obiectListbox.functieStergere(values, window)
 
-#inchide window-ul
+# inchide window-ul
 window.close()
