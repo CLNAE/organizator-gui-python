@@ -1,0 +1,18 @@
+	Functionalitatile programului:
+- Scrierea notitelor/lectiilor si salvarea acestora sub forma unor fisiere de tip text.
+- Revenirea asupra notitelor/lectiilor si modificarea continutului acestora.
+- Stergerea notitelor/lectiilor.
+- Citirea orarului dintr-un fisier json si afisarea acestuia in functie de ziua curenta (citita automat de program de la sistemul de operare) si saptamana specificata de utilizator (para/impara).
+- Vizualizarea tuturor lectiilor aflate in folderul in care se afla programul.
+- Pop-up-uri pentru confirmarea stergerii si parasirii programului.
+
+	Rolul elementelor:
+> Dropdown saptamana: Cu ajutorul acestuia, utilizatorul specifica tipul saptamanii in care se afla (para/impara)
+> "Afiseaza": Acest buton afiseaza orarul, in functie de ziua curenta si saptamana specificata.
+> Titlul lectiei: In acest camp, utilizatorul specifica numele sub care doreste ca fisierul sa fie salvat.
+> Chenarul central: In acest multiline, utilizatorul va scrie continutul lectiei/notitelor.
+> "Salveaza Lectia": Acest buton salveaza continutul din multiline intr-un fisier text, sub numele mentionat de utilizator in campul cel mai superior (Titlul lectiei).
+> "Goleste": Acest buton goleste continutul multiline-ului/chenarului central.
+> Lista lectii: Acest listbox afiseaza toate fisierele text aflate in folderul in care este salvat programul.
+> "Deschide": Acest buton deschide fisierul text selectat din listbox in interiorul programului, afisand continutul acestuia in chenarul principal si completand campul cel mai de sus cu numele sub care este salvat.
+> "Sterge": Acest buton sterge fisierul text selectat din listbox.
