@@ -1,32 +1,32 @@
-#importarea librariilor folosite in program
+# importarea librariilor folosite in program
 import json
 from datetime import date
 import calendar
 import os
 import PySimpleGUI as sg
 
-#definirea claselor proiectului
+# definirea claselor proiectului
 class Orar:
-    #constructorul care ofera valori default clasei la instantiere
+    # constructorul care ofera valori default clasei la instantiere
     def __init__(self):
         self.ore = "Alege saptamana"
         self.dataAzi = date.today()
         self.numeZi = calendar.day_name[self.dataAzi.weekday()]
 
-    #metodele clasei Orar
+    # metodele clasei Orar
     def afisareOrar_par(self, window):
         with open('orar_par.json') as fisjson1:
             orar = json.load(fisjson1)
             ore = orar[self.numeZi]
             window['textorar'].update(ore)
-            return (ore)
+            return ore
 
     def afisareOrar_impar(self, window):
         with open('orar_impar.json') as fisjson2:
             orar = json.load(fisjson2)
             ore = orar[self.numeZi]
             window['textorar'].update(ore)
-            return (ore)
+            return ore
 
 
 class Listbox:
@@ -61,11 +61,11 @@ class Multiline:
     # constructorul care ofera valori default clasei la instantiere
     def __init__(self, obiectListbox):
         self.obiectListbox = obiectListbox
-        self.TextLectie = (
-        "    Bine ai (re)venit la organizatorul tau!\n\n    Daca este prima data cand folosesti aceasta aplicatie"
-        ", ti-am pregatit o mica introducere insotita de un set de instructiuni de utilizare.\n\n    Tot ce trebuie sa"
-        " faci pentru a accesa aceasta introducere este sa mergi la lista din dreapta, sa dai click pe fisierul "
-        "Instructiuni.txt, iar mai apoi sa apesi butonul Deschide.")
+        self.TextLectie = ("    Bine ai (re)venit la organizatorul tau!\n\n    Daca este prima data cand folosesti "
+                           "aceasta aplicatie, ti-am pregatit o mica introducere insotita de un set de instructiuni de"
+                           " utilizare.\n\n    Tot ce trebuie sa faci pentru a accesa aceasta introducere este sa mergi"
+                           " la lista din dreapta, sa dai click pe fisierul Instructiuni.txt, iar mai apoi sa apesi "
+                           "butonul Deschide.")
         self.titluLectie = ''
 
     # metodele clasei Multiline
@@ -84,8 +84,11 @@ class Multiline:
                                                                 'Esti sigur ca vrei sa il suprascrii?',
                                                                 title="Atentie!", keep_on_top=True) == 'OK'):
             print(titlu)
-            with open(titlu, 'w') as fisSel:
-                fisSel.write(text)
+            if titlu == '':
+                sg.popup('Fisierul trebuie sa aiba un nume!', keep_on_top=True)
+            else:
+                with open(titlu, 'w') as fisSel:
+                    fisSel.write(text)
         obiectListbox.fisiere = [f for f in os.listdir(obiectListbox.dirCurent) if f.endswith('.txt')]
         window['listaFisiere'].update(obiectListbox.fisiere)
 
