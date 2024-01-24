@@ -87,6 +87,8 @@ class Multiline:
             if titlu == '':
                 sg.popup('Fisierul trebuie sa aiba un nume!', keep_on_top=True)
             else:
+                if titlu.endswith('.txt') == False:
+                    titlu = titlu+'.txt'
                 with open(titlu, 'w') as fisSel:
                     fisSel.write(text)
         obiectListbox.fisiere = [f for f in os.listdir(obiectListbox.dirCurent) if f.endswith('.txt')]
