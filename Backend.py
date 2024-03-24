@@ -74,6 +74,7 @@ class Multiline:
         window['txtLectie'].update(self.TextLectie)
 
     def functieSalvare(self, values, window):
+        caractere_invalide=['<','>',':','"','/','|','?','*']
         titlu = values['numeLectieDeLaUser']
         text = values['txtLectie']
         path = obiectListbox.dirCurent + os.sep + titlu
@@ -87,6 +88,10 @@ class Multiline:
             if titlu == '':
                 sg.popup('Fisierul trebuie sa aiba un nume!', keep_on_top=True)
             else:
+                for char in titlu:
+                    if char in caractere_invalide:
+                        sg.popup('Titlul contine caractere nepermise.', keep_on_top=True)
+                        return
                 if titlu.endswith('.txt') == False:
                     titlu = titlu+'.txt'
                 with open(titlu, 'w') as fisSel:
